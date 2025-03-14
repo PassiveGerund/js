@@ -1,68 +1,60 @@
-//Площадь квадрата
-let a = Math.round(Math.random() * 10);
-console.log(`Площадь квадрата со стороной a=${a} равна ${a*a}`);
-
-// Площадь круга
-let r = 10;
-let digits = 3.1415926535 * (r*r);
-console.log(`Радиус: ${r}
-Площадь: ${ Math.round(digits * 100) / 100 }
-`);
-
-//Количество парт
-let classes = 13;
-let studenst = 7 ;
-let parts = Math.round(studenst / 2)*classes;
-
-console.log(`
-Классов: ${ classes}
-Учеников: ${ studenst}
-Нужно купить парт: ${parts}
- `);
-
-//Деление яблок
-let apples = 10;
-let people = 3 ;
-let result = Math.round(apples / people);
-let rest = apples - (result * people);
-
-console.log(`
-Яблок: ${apples}
-Человек: ${people}
-Каждый человек получит по ${result} яблока
-Останется ${rest} яблоко
- `);
-
-
-let min = Math.ceil(0);
-let max = Math.floor(300);
-let randomdigit = Math.floor(Math.random() * (max - min)) + min;
-console.log(randomdigit);
-
-//Рандомное вещественное число с точностью 2 знака после запятой) в промежутке от 98 до 102
-let digitsec = (Math.random() * (max - min) + min);
-let randomdigitSecond = Math.round(digitsec * 100) / 100
-console.log(randomdigitSecond);
-
 /*
- * - Рандомное вещественное число с точностью 6 знаков после запятой, в промежутке от -300 до +300,
- * при этом целая часть числа должна быть кратна 10 (Например -290.536748, -20.759206, 110.463069 и тому подобные)
+Вам даны 4 объекта.
+У каждого из них есть поле dateOfBirth, в котором записана дата его рождения.
+Добавьте в каждый объект поле age, в котором будет записано полное количество лет человека.
+Далее выведите каждый объект.
+
+В решение задачи вам поможет объект Date для работы с датами, и его метод getTime:
+* https://learn.javascript.ru/date
+* https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Date
+
+
+--- Вывод программы, запущенной 20 января 2025
+Вывод программы должен быть следующим:
+{ name: 'Alex', dateOfBirth: 2024-05-15T00:00:00.000Z, age: 0 }
+{ name: 'Jake', dateOfBirth: 1970-01-01T00:00:00.000Z, age: 55 }
+{ name: 'John', dateOfBirth: 2007-12-30T08:32:59.953Z, age: 17 }
+{ name: 'Bob', dateOfBirth: 2025-01-20T08:20:21.741Z, age: 0 }
  */
 
+const alex = {
+ name: 'Alex',
+ dateOfBirth: new Date('2024-05-15'),
+};
 
-//++i и i++
-let i = 0;
 
-console.log('1:', i); //0
 
-console.log('2:', i++); // 0
-console.log('3:', i);  // 1
+const jake = {
+ name: 'Jake',
+ dateOfBirth: new Date('1970-01-01T00:00:00.000Z'),
+};
 
-console.log('4:', ++i);  //2
-console.log('5:', i);  //2
+const john = {
+ name: 'John',
+ dateOfBirth: new Date('2007-12-30T11:32:59.953+03:00'),
+};
 
-console.log('6:', i--); //2
-console.log('7:', i); //1
+const bob = {
+ name: 'Bob',
+ dateOfBirth: new Date(),
+};
 
-console.log('8:', --i);  //0
-console.log('9:', i); //0
+// ... Ваш код здесь
+
+
+function calculateAge(dateOfBirth) {
+ const today = new Date();
+ let age = today.getFullYear() - dateOfBirth.getFullYear();
+ const month = today.getMonth() - dateOfBirth.getMonth();
+
+ if (month < 0 || (month === 0 && today.getDate() < dateOfBirth.getDate())) {
+  age--;
+ }
+
+ return age;
+}
+
+bob.age = calculateAge(bob.dateOfBirth);
+console.log(`${alex.name} is ${bob.age} years old.`);
+
+
