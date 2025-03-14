@@ -55,6 +55,6 @@ function calculateAge(dateOfBirth) {
 }
 
 bob.age = calculateAge(bob.dateOfBirth);
-console.log(`${alex.name} is ${bob.age} years old.`);
+console.log(`${bob.name} is ${bob.age} years old.`);
 
 
