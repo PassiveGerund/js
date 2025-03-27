@@ -2,13 +2,27 @@
 // Дан массив чисел, необходимо округлить каждое положительное число в нем, кроме последних трех положительных чисел.
 
 let init = [1.1 , 2.2, -2, 3.3, -1, 5.5, 5.99, 7.49, 7.9999, -2.2];
+let newinit = [];
 
-for (let i = 0; i < init.length-3; i++) {
-   init[i] = Math.round(init[i]);
+for (let i = 0; i < init.length; i++) {
+   if (init[i] > 0 ) {
 
+       if (newinit.length < init.length-4) {
+
+           newinit[i] = Math.round(init[i]);
+       }
+       else {
+           newinit[i] = init[i];
+       }
+   }
+
+   else {
+       newinit[i] = init[i];
+   }
 }
 
-// console.log(init);
+ // console.log(newinit);
+
 // console.log([1, 2, -2, 3, -1, 6, 5.99, 7.49, 7.9999, -2.2]);
 
 
@@ -58,42 +72,8 @@ const matrix = [
     [6, 'Title-6', 'Description-6', 'Поле с багом'],
 ];
 
-matrix.forEach(function (item) {
-        console.log(item.join('\t'));
-}
-);
+// matrix.forEach(function (item) {
+//         console.log(item.join('\t'));
+// }
+// );
 
-//### Картофель
-// Выполните задание
-
-
-const potatoes = [
-    { weight: 691, variety: 'Russet Burbank' },
-    { weight: 624, variety: 'Russet Burbank' },
-    { weight: 538, variety: 'Yukon Gold' },
-    { weight: 428, variety: 'Russet Burbank' },
-    { weight: 281, variety: 'Yukon Gold' },
-];
-const targetWeight = 1500;
-
-// ... Ваш код здесь ...
-
-console.log(
-    `
-Общий вес: ${resultSum}
-Отклонение: ${resultDifference}
-Превалирующий сорт: ${resultVariety}
-Выбранный картофель:`,
-    resultPotatoes,
-);
-
-/* ОЖИДАЕМЫЙ ВЫВОД
-Общий вес: 1510
-Отклонение: 10
-Превалирующий сорт: Yukon Gold
-Выбранный картофель: [
-  { weight: 691, variety: 'Russet Burbank' },
-  { weight: 538, variety: 'Yukon Gold' },
-  { weight: 281, variety: 'Yukon Gold' }
-]
- */
