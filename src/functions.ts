@@ -111,14 +111,85 @@ const datePars = (date, cbPast, cbFuture) => {
 /* ### Билдер сообщений
 Напишите функцию, возвращающую другую функцию, чтобы этот код заработал  */
 
-const phrase = 'Bye';
 const sayBuilder = (phrase: string) => {
-  return phrase;
+  return (name: string) => {
+    // вот тут в sayBuilder возвращает функцию sayHi с апргументом (стр 122)
+    return phrase + ', ' + name; // вот тут можно использовать аргументы обеих функций
+  };
 };
-const sayHi = (name) => {
-  return sayBuilder(phrase) + ' ' + name;
-};
-// console.log(sayHi('Maxim')); // Hi, Maxim!
 
-// const sayHi = sayBuilder('Hi'); // тут у sayHi нет аргументов, поэтому не понятно как передавать имя
-// console.log(sayHi('Ruslan')); // Hi, Ruslan! // а тут аргумент уже есть
+const sayHi = sayBuilder('Hi'); // тут параметр sayHi будет сразу передан в sayBuilder , поэтому пока тут аргумента не нужно.
+// console.log(sayHi('Nadin')); // не очевидно, куда именно этот аргумент будет передан в sayBuilder()
+
+const sayBye = sayBuilder('Bye');
+// console.log(sayBye('Maxim')); // Bye, Maxim!
+
+// Самопроверка
+const array = [
+  [1, 9, 9],
+  [2, 3, 6],
+  [5, 5, 25],
+  [8, 3, 24],
+  [0, 0, 0],
+];
+
+const multiply = (a: number, b: number) => a * b;
+const check = (array, somefunction) => {
+  for (const el of array) {
+    // console.log(el);
+    // console.log(multiply(el[0], el[1]));
+    if (somefunction(el[0], el[1]) !== el[2]) {
+      return false;
+    }
+    console.log(true);
+  }
+};
+// console.log(check(array, multiply));
+
+// шифр
+const str1 = 'the quick brown fox jumps over the lazy dog';
+const arr1 = str1.split('');
+const str2 = 'oak lgypb wited zts qgfch tuki oak mjrn xtv';
+const arr2 = str2.split('');
+
+const arr3 = {};
+
+for (let i = 0; i < arr1.length; i++) {
+  arr3[arr2[i]] = arr1[i];
+}
+// console.log(arr3); // сопоставили
+
+const rebusstr = 'ntg ajuk fjbydv vikjo citvikhh yd mkjidydv qjujhpiyco. ptdvijoh!';
+const rebusarr = rebusstr.split('');
+
+const result = [];
+
+for (const letter of rebusarr) {
+  if (arr3[letter] === undefined) {
+    arr3[letter] = letter;
+  }
+  result.push(arr3[letter]);
+}
+
+// console.log(result.join(''));
+
+// фибоначи
+// 1, 1, 2, 3, 5, 8, 13, 21, 34
+let number1 = 1;
+let number2 = 1;
+let sum = 1;
+let index = 2;
+
+const fib = (row) => {
+  if (index < row) {
+    number2 = number1;
+    number1 = sum;
+    sum = number2 + number1;
+    index++;
+    return fib(row);
+  }
+  return sum;
+};
+// console.log(fib(8));
+
+// Калькулятор времени скачивания файла
