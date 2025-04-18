@@ -106,7 +106,7 @@ const datePars = (date, cbPast, cbFuture) => {
   return currentDate;
 };
 
-// console.log(datePars(date, cbPast, cbFuture));
+console.log(datePars(date, cbPast, cbFuture));
 
 /* ### Билдер сообщений
 Напишите функцию, возвращающую другую функцию, чтобы этот код заработал  */
