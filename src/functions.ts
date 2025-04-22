@@ -106,7 +106,7 @@ const datePars = (date, cbPast, cbFuture) => {
   return currentDate;
 };
 
-console.log(datePars(date, cbPast, cbFuture));
+// console.log(datePars(date, cbPast, cbFuture));
 
 /* ### Билдер сообщений
 Напишите функцию, возвращающую другую функцию, чтобы этот код заработал  */
@@ -175,21 +175,14 @@ for (const letter of rebusarr) {
 
 // фибоначи
 // 1, 1, 2, 3, 5, 8, 13, 21, 34
-let number1 = 1;
-let number2 = 1;
-let sum = 1;
-let index = 2;
+// 1, 2, 3, 4, 5, 6, 7, 8,   9
 
 const fib = (row) => {
-  if (index < row) {
-    number2 = number1;
-    number1 = sum;
-    sum = number2 + number1;
-    index++;
-    return fib(row);
+  if (row === 1 || row === 2) {
+    return 1;
   }
-  return sum;
+  return fib(row - 1) + fib(row - 2);
 };
-// console.log(fib(8));
+console.log(fib(4));
 
 // Калькулятор времени скачивания файла
