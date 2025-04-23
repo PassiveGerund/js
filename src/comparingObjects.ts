@@ -22,7 +22,7 @@ const compareObjectsRecursive = (obj1: any, obj2: any): boolean => {
   if (Object.values(obj1).toString() !== Object.values(obj2).toString()) {
     return false;
   }
-  // тут он пытается перебрать значения null
+
   for (const value1 of Object.values(obj1)) {
     // проверяем все значения массива1
     if (typeof value1 === 'object') {
