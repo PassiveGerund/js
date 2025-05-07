@@ -111,16 +111,16 @@ const randomObjects = Array.from({ length: 4 }).map(() => {
   };
 });
 
-const sortById = (data: User, direction = 'asc') => {
+const sortById = <User>(data: User, direction = 'asc'): User => {
   if (direction === 'desc') {
     return data.sort((a: User, b: User) => (a.id > b.id ? -1 : 1));
   }
   return data.sort((a: User, b: User) => (a.id < b.id ? -1 : 1));
 };
-
+//
 // sortById(randomUsers);
 // console.log(randomUsers); // Должны быть отсортированы по возрастанию id
-
+//
 // sortById(randomAnimals, 'desc');
 // console.log(randomAnimals); // Должны быть отсортированы по убыванию id
 
@@ -165,13 +165,14 @@ const getManyRandomItems = <T>(items: T[], count: number): T[] => {
 // console.log(getManyRandomItems(['a', 'b', 'c'], 4));
 
 const getManyRandomItemsV2 = <T>(items: T[], count: number): T[] => {
-  const arr = [];
-  for (let i = 0; i <= count; i++) {
-    arr.push(getOneRandomItem(items));
-  }
-  const uniqueArr = new Set(arr); // создаём коллекцию уникальных значений
-
-  return Array.from(uniqueArr);
+  // надо чтобы рандомные элементы выбирались только из тех, которые НЕ были выбраны ранее
+  return items.reduce((acc, cur) => {
+    // console.log(`Взяли значение: ${cur}. Текущий аккумулятор: ${acc}`);
+    if (!acc.includes(cur)) {
+      acc.push(cur);
+    }
+    return acc;
+  }, []);
 };
 
 // const words = ['alpha', 'bravo', 'charlie', 'delta', 'echo', 'foxtrot'];
@@ -179,14 +180,12 @@ const getManyRandomItemsV2 = <T>(items: T[], count: number): T[] => {
 // console.log(first.toUpperCase()); // first должен подсвечиваться типом string
 // console.log(second.toUpperCase()); // second должен подсвечиваться типом string
 
-const numbers = [1, 2, 3, 4, 5, 6];
-const [digit] = getManyRandomItems(numbers, 1);
-console.log(digit * 100); // digit должен подсвечиваться типом number
+// const numbers = [1, 2, 3, 4, 5, 6];
+// const [digit] = getManyRandomItems(numbers, 1);
+// console.log(digit * 100); // digit должен подсвечиваться типом number
 
-// const dataV2 = ['a', 'b', 'c', 'd', 'e'];
-// const uniqV2 = getManyRandomItemsV2(dataV2, 5);
+const dataV2 = ['a', 'b', 'c', 'd', 'e'];
+const uniqV2 = getManyRandomItemsV2(dataV2, 5);
 
-// console.log(uniqV2); // Здесь должны быть все элементы dataV2 в случайном порядке
-
-// console.log(dataV2.length === uniqV2); // Здесь должно быть true
-// как он может вернуть true если dataV2.length === 5, а uniqV2 === массив?
+console.log(uniqV2); // Здесь должны быть все элементы dataV2 в случайном порядке
+console.log(dataV2.length === uniqV2.length); // Здесь должно быть true
